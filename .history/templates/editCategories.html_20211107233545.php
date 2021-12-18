@@ -1,0 +1,54 @@
+<div class="section-heading-container">
+  <h2 class="section-heading">Add New Category</h2>
+</div>
+
+<form action="editCategories.php" method="POST">
+  <p>
+    <span>
+      <label for="newCategory">New Category</label>
+    </span>
+    <span>
+      <input type="text" id="newCategory" name="newCategoryId" placeholder="categoryId" required>
+    </span>
+    <span>
+      <input type="text" id="newCategory" name="newCategoryCategoryName" placeholder="categoryName" required>
+    </span>
+    <span>
+      <input class="edit-category" type="submit" name="addNew" value="Add">
+    </span>
+  </p>
+  <p><?= $message ?></p>
+</form>
+
+<div class="section-heading-container">
+  <h2 class="section-heading"><?= $title ?></h2>
+</div>
+
+<table>
+  <tr>
+    <th>Category</th>
+    <th>Rename To</th>
+    <th></th>
+  </tr>
+
+  <?php foreach ($categoryRows as $row):
+    $categoryName = $row["categoryName"];
+    $categoryId = $row["categoryId"];
+    ?>
+    
+    <tr>
+      <td><?= $categoryName ?></td>
+      <form action="editCategories.php" method="POST">
+        <td>
+          <input type="text" id="modifyCategory" name="modifyCategory">
+        </td>
+        <td>
+          <input class="edit-category" type="submit" name="modify" value="Modify">
+          <input type="submit" name="delete" value="Delete">
+          <input type="hidden" name="categoryId" value="<?= $categoryId ?>" >
+        </td>
+      </form>
+
+    </tr>
+  <?php endforeach; ?>
+</table>
